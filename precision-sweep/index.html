@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Precision Sweep iPhone</title>
+<style>
+:root{color-scheme:dark}*{box-sizing:border-box}body{margin:0;background:#0b0b0d;color:#fff;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;padding:18px}main{max-width:680px;margin:auto}h1{font-size:25px;margin:0 0 6px}.muted{color:#aaa;font-size:13px;line-height:1.4}.card{background:#18181c;border:1px solid #33333a;border-radius:16px;padding:14px;margin:12px 0}label{font-size:12px;color:#aaa;display:block;margin:8px 0 5px}input,select,button{width:100%;font:inherit;border-radius:12px}input,select{padding:12px;background:#0f0f12;border:1px solid #35353c;color:white}button{padding:15px;border:0;font-weight:800;margin-top:9px}.go{background:#3578f6;color:white}.test{background:#2e8b57;color:white}.stop{background:#34343a;color:white}.hz{text-align:center;font:700 36px ui-monospace,SFMono-Regular,Menlo,monospace}.db{text-align:center;color:#bbb;font:17px ui-monospace,SFMono-Regular,Menlo,monospace;margin-top:8px}.status{white-space:pre-wrap;background:#0e0e11;border-radius:10px;padding:10px;font:12px ui-monospace,SFMono-Regular,Menlo,monospace;line-height:1.45}.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}.barbg{height:8px;background:#0e0e11;border-radius:99px;overflow:hidden;margin-top:12px}.bar{height:100%;width:0;background:#3578f6}.bad{color:#ff8b84}.good{color:#76e39b}@media(max-width:500px){.row{grid-template-columns:1fr}}</style>
+</head>
+<body>
+<main>
+<h1>Precision Frequency Sweep</h1>
+<div class="muted">iPhone/Safari Web Audio version • 0.001 Hz setpoint resolution • −100.0 to 0.0 dBFS</div>
+
+<div class="card">
+  <div id="jsOK" class="status bad">JavaScript has NOT started. If this message never changes, this page is being opened in a preview instead of Safari.</div>
+</div>
+
+<div class="card">
+<label>Mode</label>
+<select id="mode">
+  <option value="fixed">Fixed Tone</option>
+  <option value="linear" selected>Linear Sweep</option>
+  <option value="log">Log Sweep</option>
+</select>
+
+<div class="row">
+<div><label>Start / tone frequency (Hz)</label><input id="start" type="number" step="0.001" inputmode="decimal" value="1000.000"></div>
+<div id="endWrap"><label>End frequency (Hz)</label><input id="end" type="number" step="0.001" inputmode="decimal" value="2000.000"></div>
+</div>
+
+<div id="durWrap"><label>Duration (seconds)</label><input id="dur" type="number" step="0.001" inputmode="decimal" value="5.000"></div>
+
+<label>Attenuation: <span id="dbLabel">-12.0 dBFS</span></label>
+<input id="db" type="range" min="-100" max="0" step="0.1" value="-12">
+
+<label><input id="repeat" type="checkbox" style="width:auto"> Repeat sweep</label>
+</div>
+
+<div class="card">
+<div id="liveHz" class="hz">00000.000 Hz</div>
+<div id="liveDb" class="db">-12.0 dBFS</div>
+<div class="barbg"><div id="bar" class="bar"></div></div>
+</div>
+
+<div class="card">
+<button id="test" class="test">TEST 1 kHz BEEP</button>
+<button id="startBtn" class="go">START SWEEP / TONE</button>
+<button id="stopBtn" class="stop">STOP</button>
+</div>
+
+<div class="card">
+<div id="diag" class="status">Waiting for Safari audio…</div>
+</div>
+
+<div class="muted">For car-audio testing, start at a low amplifier gain and low digital level. dBFS is digital level, not SPL. A wired USB DAC is preferable to Bluetooth.</div>
+</main>
+
+<script>
+(function(){
+"use strict";
+
+const el=id=>document.getElementById(id);
+const jsOK=el("jsOK"),diag=el("diag"),modeEl=el("mode"),startEl=el("start"),endEl=el("end"),durEl=el("dur"),
+dbEl=el("db"),dbLabel=el("dbLabel"),liveHz=el("liveHz"),liveDb=el("liveDb"),bar=el("bar"),repeatEl=el("repeat");
+
+jsOK.textContent="JavaScript is running. This is a real browser page.";
+jsOK.className="status good";
+
+let ac=null, osc=null, gain=null, raf=0, t0=0, startHz=1000, endHz=2000, dur=5, mode="linear", repeating=false;
+let cycleTimer=null;
+
+function fHz(x){ return (Number.isFinite(x)?x:0).toFixed(3).padStart(9,"0"); }
+function gdb(db){ return Math.pow(10,db/20); }
+function log(s){ 
+  const state=ac ? ac.state : "not created";
+  const rate=ac ? ac.sampleRate : "n/a";
+  diag.textContent=s+"\nAudioContext: "+state+"\nSample rate: "+rate+" Hz";
+}
+function setDB(v){
+  v=Math.min(0,Math.max(-100,Math.round(Number(v)*10)/10));
+  dbEl.value=v; dbLabel.textContent=v.toFixed(1)+" dBFS"; liveDb.textContent=v.toFixed(1)+" dBFS";
+  if(gain&&ac) gain.gain.setValueAtTime(gdb(v),ac.currentTime);
+}
+dbEl.addEventListener("input",()=>setDB(dbEl.value));
+
+function makeContext(){
+  if(ac) return ac;
+  const C=window.AudioContext||window.webkitAudioContext;
+  if(!C) throw new Error("This browser does not expose Web Audio.");
+  try { ac=new C({latencyHint:"interactive"}); }
+  catch(e){ ac=new C(); }
+  ac.onstatechange=()=>log("Audio state changed.");
+  return ac;
+}
+
+async function unlock(){
+  const c=makeContext();
+  if(c.state!=="running"){
+    try{ await c.resume(); }catch(e){}
+  }
+
+  try{
+    const b=c.createBuffer(1,1,c.sampleRate);
+    const s=c.createBufferSource();
+    s.buffer=b; s.connect(c.destination); s.start(0);
+  }catch(e){}
+
+  if(c.state!=="running"){
+    try{ await c.resume(); }catch(e){}
+  }
+  log("Audio unlocked by user gesture.");
+  return c;
+}
+
+function stopAll(msg){
+  if(raf) cancelAnimationFrame(raf); raf=0;
+  if(cycleTimer){clearTimeout(cycleTimer);cycleTimer=null;}
+  if(osc){
+    try{osc.onended=null;osc.stop();}catch(e){}
+    try{osc.disconnect();}catch(e){}
+    osc=null;
+  }
+  if(gain){try{gain.disconnect();}catch(e){} gain=null;}
+  bar.style.width="0%";
+  if(msg) log(msg);
+}
+
+async function testBeep(){
+  stopAll();
+  try{
+    const c=await unlock();
+    const o=c.createOscillator(), g=c.createGain();
+    o.type="sine"; o.frequency.setValueAtTime(1000,c.currentTime);
+    g.gain.setValueAtTime(gdb(-12),c.currentTime);
+    o.connect(g); g.connect(c.destination);
+    o.start();
+    o.stop(c.currentTime+0.6);
+    liveHz.textContent="01000.000 Hz";
+    log("Playing 1 kHz test beep for 0.6 seconds.");
+    o.onended=()=>{liveHz.textContent="00000.000 Hz";log("Test beep finished.");};
+  }catch(e){log("ERROR: "+(e.message||e));}
+}
+
+function parse(){
+  mode=modeEl.value;
+  startHz=Math.round(Number(startEl.value)*1000)/1000;
+  endHz=Math.round(Number(endEl.value)*1000)/1000;
+  dur=Number(durEl.value);
+  repeating=repeatEl.checked;
+  if(!Number.isFinite(startHz)||startHz<0) throw new Error("Invalid start frequency.");
+  if(mode!=="fixed"&&(!Number.isFinite(endHz)||endHz<0)) throw new Error("Invalid end frequency.");
+  if(mode!=="fixed"&&(!Number.isFinite(dur)||dur<=0)) throw new Error("Duration must be > 0.");
+  if(mode==="log"&&(startHz<=0||endHz<=0)) throw new Error("Log sweep frequencies must be > 0.");
+  const nyq=ac.sampleRate/2;
+  if(startHz>=nyq||(mode!=="fixed"&&endHz>=nyq)) throw new Error("Frequency must be below Nyquist: "+nyq.toFixed(0)+" Hz.");
+  startEl.value=startHz.toFixed(3); endEl.value=endHz.toFixed(3);
+}
+
+function scheduleOne(cycleStart){
+  osc.frequency.cancelScheduledValues(cycleStart);
+  osc.frequency.setValueAtTime(startHz,cycleStart);
+  if(mode==="linear") osc.frequency.linearRampToValueAtTime(endHz,cycleStart+dur);
+  else if(mode==="log") osc.frequency.exponentialRampToValueAtTime(endHz,cycleStart+dur);
+}
+
+function currentFreq(now){
+  if(mode==="fixed") return startHz;
+  let x=now-t0;
+  if(repeating) x=((x%dur)+dur)%dur; else x=Math.min(Math.max(x,0),dur);
+  const p=Math.min(1,Math.max(0,x/dur));
+  return mode==="linear" ? startHz+(endHz-startHz)*p : startHz*Math.pow(endHz/startHz,p);
+}
+
+function draw(){
+  if(!ac||!osc)return;
+  const now=ac.currentTime, elapsed=now-t0;
+  liveHz.textContent=fHz(currentFreq(now))+" Hz";
+  if(mode==="fixed")bar.style.width="0%";
+  else if(repeating)bar.style.width=((((elapsed%dur)+dur)%dur)/dur*100)+"%";
+  else{
+    bar.style.width=(Math.min(1,Math.max(0,elapsed/dur))*100)+"%";
+    if(elapsed>=dur){liveHz.textContent=fHz(endHz)+" Hz";stopAll("Sweep complete.");return;}
+  }
+  raf=requestAnimationFrame(draw);
+}
+
+async function startSound(){
+  stopAll();
+  try{
+    await unlock();
+    parse();
+    osc=ac.createOscillator(); gain=ac.createGain();
+    osc.type="sine";
+    gain.gain.setValueAtTime(gdb(Number(dbEl.value)),ac.currentTime);
+    osc.connect(gain); gain.connect(ac.destination);
+    t0=ac.currentTime+0.02;
+
+    if(mode==="fixed"){
+      osc.frequency.setValueAtTime(startHz,t0);
+      osc.start(t0);
+    }else if(!repeating){
+      scheduleOne(t0);
+      osc.start(t0);
+      osc.stop(t0+dur+0.02);
+    }else{
+      osc.frequency.setValueAtTime(startHz,t0);
+      let ts=t0;
+      for(let i=0;i<100;i++){
+        if(mode==="linear") osc.frequency.linearRampToValueAtTime(endHz,ts+dur);
+        else osc.frequency.exponentialRampToValueAtTime(endHz,ts+dur);
+        ts+=dur;
+        osc.frequency.setValueAtTime(startHz,ts);
+      }
+      osc.start(t0);
+    }
+    log("Generator started.");
+    draw();
+  }catch(e){stopAll();log("ERROR: "+(e.message||e));}
+}
+
+modeEl.addEventListener("change",()=>{
+  const fixed=modeEl.value==="fixed";
+  el("endWrap").style.display=fixed?"none":"";
+  el("durWrap").style.display=fixed?"none":"";
+});
+
+el("test").addEventListener("click",testBeep);
+el("startBtn").addEventListener("click",startSound);
+el("stopBtn").addEventListener("click",()=>stopAll("Stopped."));
+setDB(-12);
+log("Page initialized. Tap TEST 1 kHz BEEP first.");
+})();
+</script>
+</body>
+</html>
