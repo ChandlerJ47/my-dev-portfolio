@@ -10,45 +10,23 @@
 :root{color-scheme:dark;--accent:#3578f6;--panel:#18181c;--line:#33333a;--muted:#aaa}
 *{box-sizing:border-box}
 body{margin:0;background:#0b0b0d;color:#fff;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;padding:18px}
-main{max-width:680px;margin:auto}
-h1{font-size:25px;margin:0 0 6px}
-.muted{color:var(--muted);font-size:13px;line-height:1.4}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:14px;margin:12px 0}
-label{font-size:12px;color:var(--muted);display:block;margin:8px 0 5px}
-input,select,button{font:inherit;border-radius:12px}
+main{max-width:680px;margin:auto}h1{font-size:25px;margin:0 0 6px}
+.muted{color:var(--muted);font-size:13px;line-height:1.4}.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:14px;margin:12px 0}
+label{font-size:12px;color:var(--muted);display:block;margin:8px 0 5px}input,select,button{font:inherit;border-radius:12px}
 input,select{width:100%;padding:12px;background:#0f0f12;border:1px solid #35353c;color:white;font-size:16px}
-button{width:100%;padding:15px;border:0;font-weight:800;margin-top:9px;min-height:48px}
-.go{background:var(--accent);color:white}.test{background:#2e8b57;color:white}.stop{background:#34343a;color:white}
-.hz{text-align:center;font:700 36px ui-monospace,SFMono-Regular,Menlo,monospace}
-.db{text-align:center;color:#bbb;font:17px ui-monospace,SFMono-Regular,Menlo,monospace;margin-top:8px}
-.sweepdir{text-align:center;color:#8d8d96;font:13px ui-monospace,SFMono-Regular,Menlo,monospace;margin-top:7px}
+button{width:100%;padding:15px;border:0;font-weight:800;margin-top:9px;min-height:48px}.go{background:var(--accent);color:white}.test{background:#2e8b57;color:white}.stop{background:#34343a;color:white}
+.hz{text-align:center;font:700 36px ui-monospace,SFMono-Regular,Menlo,monospace}.db{text-align:center;color:#bbb;font:17px ui-monospace,SFMono-Regular,Menlo,monospace;margin-top:8px}.sweepdir{text-align:center;color:#8d8d96;font:13px ui-monospace,SFMono-Regular,Menlo,monospace;margin-top:7px}
 .status{white-space:pre-wrap;background:#0e0e11;border-radius:10px;padding:10px;font:12px ui-monospace,SFMono-Regular,Menlo,monospace;line-height:1.45}
-.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.barbg{height:8px;background:#0e0e11;border-radius:99px;overflow:hidden;margin-top:12px}
-.bar{height:100%;width:0;background:var(--accent)}
-.bad{color:#ff8b84}.good{color:#76e39b}
-.checkline{display:flex;align-items:center;gap:9px;margin-top:12px;font-size:14px;color:#fff}
-.checkline input{width:auto}
-.optionbox{margin-top:12px;padding:12px;background:#111114;border:1px solid #303036;border-radius:12px}
-.optionbox .row{align-items:end}
-.optionbox label:first-child{margin-top:0}
-.optionhint{font-size:12px;color:#8d8d96;margin-top:10px;line-height:1.4}
-.knob-section{text-align:center}.knob-title{font-size:12px;color:var(--muted);margin-bottom:8px}
-.knob-shell{position:relative;width:190px;height:190px;margin:4px auto 0;touch-action:none;user-select:none;-webkit-user-select:none;cursor:grab}
-.knob-shell:active{cursor:grabbing}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}.barbg{height:8px;background:#0e0e11;border-radius:99px;overflow:hidden;margin-top:12px}.bar{height:100%;width:0;background:var(--accent)}
+.bad{color:#ff8b84}.good{color:#76e39b}.checkline{display:flex;align-items:center;gap:9px;margin-top:12px;font-size:14px;color:#fff}.checkline input{width:auto}
+.optionbox{margin-top:12px;padding:12px;background:#111114;border:1px solid #303036;border-radius:12px}.optionbox .row{align-items:end}.optionbox label:first-child{margin-top:0}.optionhint{font-size:12px;color:#8d8d96;margin-top:10px;line-height:1.4}
+.knob-section{text-align:center}.knob-title{font-size:12px;color:var(--muted);margin-bottom:8px}.knob-shell{position:relative;width:190px;height:190px;margin:4px auto 0;touch-action:none;user-select:none;-webkit-user-select:none;cursor:grab}.knob-shell:active{cursor:grabbing}.knob-shell.disabled{opacity:.42;pointer-events:none}
 .knob-arc{position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 225deg,var(--accent) 0deg,var(--accent) var(--arc),#303038 var(--arc),#303038 270deg,transparent 270deg);-webkit-mask:radial-gradient(circle,transparent 61%,#000 62%,#000 69%,transparent 70%);mask:radial-gradient(circle,transparent 61%,#000 62%,#000 69%,transparent 70%)}
-.knob{position:absolute;width:132px;height:132px;left:29px;top:29px;border-radius:50%;background:radial-gradient(circle at 36% 30%,#55555d 0,#313137 35%,#1d1d22 70%,#111114 100%);border:2px solid #5a5a63;box-shadow:inset 0 2px 7px rgba(255,255,255,.10),0 5px 14px rgba(0,0,0,.45);transform:rotate(var(--rot));pointer-events:none}
-.knob::after{content:"";position:absolute;width:5px;height:39px;border-radius:5px;background:#f4f4f5;left:50%;top:10px;transform:translateX(-50%);box-shadow:0 0 4px rgba(255,255,255,.25)}
-.knob-center{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none}
-.knob-value{font:700 25px ui-monospace,SFMono-Regular,Menlo,monospace;line-height:1}
-.knob-unit{font:11px ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--muted);margin-top:3px}
-.knob-scale{display:flex;justify-content:space-between;width:186px;margin:-8px auto 0;color:#888;font:11px ui-monospace,SFMono-Regular,Menlo,monospace}
-.trim{display:grid;grid-template-columns:1fr 1.25fr 1fr;gap:8px;align-items:center;max-width:320px;margin:14px auto 0}
-.trim button{margin:0;padding:10px;min-height:44px;background:#2b2b31;color:#fff}
-.trim input{text-align:center;padding:10px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
-.hint{font-size:12px;color:#8d8d96;margin-top:10px}
-.livecard{padding-top:18px;padding-bottom:18px}
-@media(max-width:500px){.row{grid-template-columns:1fr}}
+.knob{position:absolute;width:132px;height:132px;left:29px;top:29px;border-radius:50%;background:radial-gradient(circle at 36% 30%,#55555d 0,#313137 35%,#1d1d22 70%,#111114 100%);border:2px solid #5a5a63;box-shadow:inset 0 2px 7px rgba(255,255,255,.10),0 5px 14px rgba(0,0,0,.45);transform:rotate(var(--rot));pointer-events:none}.knob::after{content:"";position:absolute;width:5px;height:39px;border-radius:5px;background:#f4f4f5;left:50%;top:10px;transform:translateX(-50%);box-shadow:0 0 4px rgba(255,255,255,.25)}
+.knob-center{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none}.knob-value{font:700 24px ui-monospace,SFMono-Regular,Menlo,monospace;line-height:1}.knob-unit{font:11px ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--muted);margin-top:3px}.knob-scale{display:flex;justify-content:space-between;width:186px;margin:-8px auto 0;color:#888;font:11px ui-monospace,SFMono-Regular,Menlo,monospace}
+.trim{display:grid;grid-template-columns:1fr 1.25fr 1fr;gap:8px;align-items:center;max-width:340px;margin:14px auto 0}.trim button{margin:0;padding:10px;min-height:44px;background:#2b2b31;color:#fff}.trim input{text-align:center;padding:10px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.freq-trim{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;max-width:430px;margin:8px auto 0}.freq-trim button{margin:0;padding:9px 4px;min-height:42px;background:#2b2b31;color:#fff;font-size:13px}.freq-input{max-width:260px;margin:12px auto 0;text-align:center;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}.hint{font-size:12px;color:#8d8d96;margin-top:10px;line-height:1.4}.livecard{padding-top:18px;padding-bottom:18px}.manual-disabled{font-size:12px;color:#d1a85b;margin-top:9px}
+@media(max-width:500px){.row{grid-template-columns:1fr}.freq-trim{grid-template-columns:repeat(2,1fr)}}
 </style>
 </head>
 <body>
@@ -56,9 +34,7 @@ button{width:100%;padding:15px;border:0;font-weight:800;margin-top:9px;min-heigh
 <h1>Precision Frequency Sweep</h1>
 <div class="muted">iPhone/Safari Web Audio • 0.001 Hz setpoint resolution • −100.0 to 0.0 dBFS</div>
 
-<div class="card">
-<div id="jsOK" class="status bad">JavaScript has NOT started. Open this page in Safari if this message stays red.</div>
-</div>
+<div class="card"><div id="jsOK" class="status bad">JavaScript has NOT started. Open this page in Safari if this message stays red.</div></div>
 
 <div class="card">
 <label for="mode">Mode</label>
@@ -66,376 +42,101 @@ button{width:100%;padding:15px;border:0;font-weight:800;margin-top:9px;min-heigh
 <option value="fixed">Fixed Tone</option>
 <option value="linear" selected>Linear Sweep</option>
 <option value="log">Log Sweep</option>
+<option value="stepped">Stepped Sweep</option>
 </select>
-
 <div class="row">
-<div><label id="startLabel" for="start">Low frequency (Hz)</label><input id="start" type="number" step="0.001" inputmode="decimal" value="1000.000"></div>
-<div id="endWrap"><label id="endLabel" for="end">High frequency (Hz)</label><input id="end" type="number" step="0.001" inputmode="decimal" value="2000.000"></div>
+<div><label id="startLabel" for="start">Low frequency (Hz)</label><input id="start" type="number" step="0.001" inputmode="decimal" value="30.000"></div>
+<div id="endWrap"><label for="end">High frequency (Hz)</label><input id="end" type="number" step="0.001" inputmode="decimal" value="50.000"></div>
 </div>
-
-<div id="durWrap">
-<label for="dur">Time per sweep direction (seconds)</label>
-<input id="dur" type="number" step="0.001" inputmode="decimal" value="5.000">
+<div id="durWrap"><label for="dur">Time per sweep direction (seconds)</label><input id="dur" type="number" step="0.001" inputmode="decimal" value="5.000"></div>
+<div id="stepOptions" class="optionbox" style="display:none">
+<div class="row">
+<div><label for="stepSize">Frequency step (Hz)</label><input id="stepSize" type="number" step="0.001" min="0.001" inputmode="decimal" value="0.100"></div>
+<div><label for="stepDwell">Dwell per step (seconds)</label><input id="stepDwell" type="number" step="0.001" min="0.001" inputmode="decimal" value="1.000"></div>
 </div>
-
+<div class="optionhint">Example: a 0.100 Hz step gives 30.000, 30.100, 30.200… The boundary frequency is always included even when the range is not an exact multiple of the step.</div>
+</div>
 <div id="sweepOptions" class="optionbox">
 <div class="row">
-<div>
-<label for="direction">Starting direction</label>
-<select id="direction">
-<option value="up" selected>Low → High</option>
-<option value="down">High → Low</option>
-</select>
-</div>
-<div>
-<label class="checkline"><input id="sweepBack" type="checkbox" checked> Sweep back at the boundary</label>
-<label class="checkline"><input id="loop" type="checkbox"> Loop continuously</label>
-</div>
+<div><label for="direction">Starting direction</label><select id="direction"><option value="up" selected>Low → High</option><option value="down">High → Low</option></select></div>
+<div><label class="checkline"><input id="sweepBack" type="checkbox" checked> Sweep back at the boundary</label><label class="checkline"><input id="loop" type="checkbox"> Loop continuously</label></div>
 </div>
 <div id="sweepBehavior" class="optionhint">Low → High, then High → Low, then stop.</div>
 </div>
 </div>
 
 <div class="card knob-section">
+<div class="knob-title">MANUAL FREQUENCY — FIXED TONE</div>
+<div id="freqKnobShell" class="knob-shell disabled" role="slider" tabindex="0" aria-label="Manual tone frequency" aria-valuemin="1" aria-valuemax="20000" aria-valuenow="30">
+<div id="freqKnobArc" class="knob-arc"></div><div id="freqKnob" class="knob"></div>
+<div class="knob-center"><div><div id="freqKnobValue" class="knob-value">30.000</div><div class="knob-unit">Hz</div></div></div>
+</div>
+<div class="knob-scale"><span>1 Hz</span><span>≈141 Hz</span><span>20 kHz</span></div>
+<input id="freqExact" class="freq-input" type="number" inputmode="decimal" min="0.001" step="0.001" value="30.000" aria-label="Exact manual frequency in Hz">
+<div class="freq-trim"><button id="freqM1" type="button">−1 Hz</button><button id="freqM01" type="button">−0.1 Hz</button><button id="freqP01" type="button">+0.1 Hz</button><button id="freqP1" type="button">+1 Hz</button></div>
+<div class="freq-trim"><button id="freqM001" type="button">−0.01 Hz</button><button id="freqM0001" type="button">−0.001 Hz</button><button id="freqP0001" type="button">+0.001 Hz</button><button id="freqP001" type="button">+0.01 Hz</button></div>
+<div id="manualHint" class="manual-disabled">Switch Mode to Fixed Tone to use the frequency knob.</div>
+<div class="hint">The knob uses a logarithmic 1 Hz–20 kHz scale for fast movement. The number box and trim buttons retain exact 0.001 Hz control.</div>
+</div>
+
+<div class="card knob-section">
 <div class="knob-title">OUTPUT ATTENUATION</div>
-<div id="knobShell" class="knob-shell" role="slider" tabindex="0" aria-label="Output attenuation in dBFS" aria-valuemin="-100" aria-valuemax="0" aria-valuenow="-12" aria-valuetext="-12.0 dBFS">
-<div id="knobArc" class="knob-arc"></div>
-<div id="knob" class="knob"></div>
+<div id="knobShell" class="knob-shell" role="slider" tabindex="0" aria-label="Output attenuation in dBFS" aria-valuemin="-100" aria-valuemax="0" aria-valuenow="-12">
+<div id="knobArc" class="knob-arc"></div><div id="knob" class="knob"></div>
 <div class="knob-center"><div><div id="knobValue" class="knob-value">-12.0</div><div class="knob-unit">dBFS</div></div></div>
 </div>
 <div class="knob-scale"><span>-100</span><span>-50</span><span>0</span></div>
-<div class="trim">
-<button id="dbDown" type="button">−0.1</button>
-<input id="dbExact" type="number" inputmode="decimal" min="-100" max="0" step="0.1" value="-12.0" aria-label="Exact attenuation in dBFS">
-<button id="dbUp" type="button">+0.1</button>
-</div>
-<div class="hint">Drag your finger around the knob. Clockwise raises the level; counterclockwise lowers it. The knob follows your finger direction.</div>
+<div class="trim"><button id="dbDown" type="button">−0.1</button><input id="dbExact" type="number" inputmode="decimal" min="-100" max="0" step="0.1" value="-12.0"><button id="dbUp" type="button">+0.1</button></div>
+<div class="hint">Drag around the knob. Clockwise raises the level; counterclockwise lowers it.</div>
 </div>
 
-<div class="card livecard">
-<div id="liveHz" class="hz">00000.000 Hz</div>
-<div id="liveDb" class="db">-12.0 dBFS</div>
-<div id="liveDirection" class="sweepdir">Ready</div>
-<div class="barbg"><div id="bar" class="bar"></div></div>
-</div>
-
-<div class="card">
-<button id="test" class="test" type="button">TEST 1 kHz BEEP</button>
-<button id="startBtn" class="go" type="button">START SWEEP / TONE</button>
-<button id="stopBtn" class="stop" type="button">STOP</button>
-</div>
-
+<div class="card livecard"><div id="liveHz" class="hz">00000.000 Hz</div><div id="liveDb" class="db">-12.0 dBFS</div><div id="liveDirection" class="sweepdir">Ready</div><div class="barbg"><div id="bar" class="bar"></div></div></div>
+<div class="card"><button id="test" class="test" type="button">TEST 1 kHz BEEP</button><button id="startBtn" class="go" type="button">START SWEEP / TONE</button><button id="stopBtn" class="stop" type="button">STOP</button></div>
 <div class="card"><div id="diag" class="status">Waiting for Safari audio…</div></div>
 <div class="muted">dBFS is digital level, not SPL. Start low before feeding an amplifier. A wired USB DAC is preferable to Bluetooth for measurement work.</div>
 </main>
-
 <script>
 (function(){
 "use strict";
-
 const el=id=>document.getElementById(id);
-const jsOK=el("jsOK"),diag=el("diag"),modeEl=el("mode"),startEl=el("start"),endEl=el("end"),durEl=el("dur"),
-directionEl=el("direction"),sweepBackEl=el("sweepBack"),loopEl=el("loop"),sweepOptions=el("sweepOptions"),sweepBehavior=el("sweepBehavior"),
-liveHz=el("liveHz"),liveDb=el("liveDb"),liveDirection=el("liveDirection"),bar=el("bar"),knobShell=el("knobShell"),knob=el("knob"),
-knobArc=el("knobArc"),knobValue=el("knobValue"),dbExact=el("dbExact");
-
-jsOK.textContent="JavaScript is running. Safari audio is available after you tap a play button.";
-jsOK.className="status good";
-
+const jsOK=el("jsOK"),diag=el("diag"),modeEl=el("mode"),startEl=el("start"),endEl=el("end"),durEl=el("dur"),stepSizeEl=el("stepSize"),stepDwellEl=el("stepDwell"),directionEl=el("direction"),sweepBackEl=el("sweepBack"),loopEl=el("loop"),sweepOptions=el("sweepOptions"),sweepBehavior=el("sweepBehavior"),stepOptions=el("stepOptions"),liveHz=el("liveHz"),liveDb=el("liveDb"),liveDirection=el("liveDirection"),bar=el("bar"),knobShell=el("knobShell"),knob=el("knob"),knobArc=el("knobArc"),knobValue=el("knobValue"),dbExact=el("dbExact"),freqKnobShell=el("freqKnobShell"),freqKnob=el("freqKnob"),freqKnobArc=el("freqKnobArc"),freqKnobValue=el("freqKnobValue"),freqExact=el("freqExact"),manualHint=el("manualHint");
+jsOK.textContent="JavaScript is running. Safari audio is available after you tap a play button.";jsOK.className="status good";
 let ac=null,osc=null,gain=null,raf=0,schedulerTimer=null,t0=0;
-let lowHz=1000,highHz=2000,dur=5,mode="linear",startAscending=true,sweepBack=true,looping=false,levelDB=-12.0;
-let dragging=false,nextLegIndex=0,nextLegStart=0;
-
+let lowHz=30,highHz=50,dur=5,mode="linear",startAscending=true,sweepBack=true,looping=false,levelDB=-12,manualHz=30,stepHz=.1,stepDwell=1,stepCount=0,nextLegIndex=0,nextLegStart=0,nextStepSlot=0,nextStepTime=0;
+let dbDragging=false,freqDragging=false;
 const clamp=(v,a,b)=>Math.min(b,Math.max(a,v));
 function fHz(x){return(Number.isFinite(x)?x:0).toFixed(3).padStart(9,"0")}
 function gdb(db){return Math.pow(10,db/20)}
-function log(s){
-  const state=ac?ac.state:"not created";
-  const rate=ac?ac.sampleRate:"n/a";
-  diag.textContent=s+"\nAudioContext: "+state+"\nSample rate: "+rate+" Hz";
-}
-
-function setDB(v){
-  v=Number(v);
-  if(!Number.isFinite(v))v=levelDB;
-  levelDB=clamp(Math.round(v*10)/10,-100,0);
-  const p=(levelDB+100)/100;
-  const rot=-135+p*270;
-  const arc=p*270;
-  knob.style.setProperty("--rot",rot+"deg");
-  knobArc.style.setProperty("--arc",arc+"deg");
-  knobValue.textContent=levelDB.toFixed(1);
-  dbExact.value=levelDB.toFixed(1);
-  liveDb.textContent=levelDB.toFixed(1)+" dBFS";
-  knobShell.setAttribute("aria-valuenow",levelDB.toFixed(1));
-  knobShell.setAttribute("aria-valuetext",levelDB.toFixed(1)+" dBFS");
-  if(gain&&ac){
-    gain.gain.cancelScheduledValues(ac.currentTime);
-    gain.gain.setTargetAtTime(gdb(levelDB),ac.currentTime,.004);
-  }
-}
-
-function dbFromPointer(e){
-  const r=knobShell.getBoundingClientRect();
-  const cx=r.left+r.width/2,cy=r.top+r.height/2;
-  const dx=e.clientX-cx,dy=e.clientY-cy;
-  if(Math.hypot(dx,dy)<20)return null;
-  let angle=Math.atan2(dy,dx)*180/Math.PI;
-  if(angle<0)angle+=360;
-  let unwrapped=angle;
-  if(unwrapped<135)unwrapped+=360;
-  unwrapped=clamp(unwrapped,135,405);
-  const p=(unwrapped-135)/270;
-  return -100+p*100;
-}
-function followPointer(e){const v=dbFromPointer(e);if(v!==null)setDB(v)}
-function beginDrag(e){dragging=true;knobShell.setPointerCapture&&knobShell.setPointerCapture(e.pointerId);followPointer(e);e.preventDefault()}
-function moveDrag(e){if(!dragging)return;followPointer(e);e.preventDefault()}
-function endDrag(e){
-  if(!dragging)return;
-  dragging=false;
-  if(knobShell.releasePointerCapture){try{knobShell.releasePointerCapture(e.pointerId)}catch(_){}}
-  e.preventDefault();
-}
-knobShell.addEventListener("pointerdown",beginDrag);
-knobShell.addEventListener("pointermove",moveDrag);
-knobShell.addEventListener("pointerup",endDrag);
-knobShell.addEventListener("pointercancel",endDrag);
-knobShell.addEventListener("keydown",e=>{
-  if(e.key==="ArrowUp"||e.key==="ArrowRight"){setDB(levelDB+.1);e.preventDefault()}
-  else if(e.key==="ArrowDown"||e.key==="ArrowLeft"){setDB(levelDB-.1);e.preventDefault()}
-  else if(e.key==="Home"){setDB(-100);e.preventDefault()}
-  else if(e.key==="End"){setDB(0);e.preventDefault()}
-});
-el("dbDown").addEventListener("click",()=>setDB(levelDB-.1));
-el("dbUp").addEventListener("click",()=>setDB(levelDB+.1));
-dbExact.addEventListener("change",()=>setDB(dbExact.value));
-
-function makeContext(){
-  if(ac)return ac;
-  const C=window.AudioContext||window.webkitAudioContext;
-  if(!C)throw new Error("This browser does not expose Web Audio.");
-  try{ac=new C({latencyHint:"interactive"})}catch(_){ac=new C()}
-  ac.onstatechange=()=>log("Audio state changed.");
-  return ac;
-}
-
-async function unlock(){
-  const c=makeContext();
-  if(c.state!=="running"){try{await c.resume()}catch(_){}}
-  try{
-    const b=c.createBuffer(1,1,c.sampleRate),s=c.createBufferSource();
-    s.buffer=b;s.connect(c.destination);s.start(0);
-  }catch(_){}
-  if(c.state!=="running"){try{await c.resume()}catch(_){}}
-  log("Audio unlocked by user gesture.");
-  return c;
-}
-
-function stopAll(msg){
-  if(raf)cancelAnimationFrame(raf);
-  raf=0;
-  if(schedulerTimer){clearInterval(schedulerTimer);schedulerTimer=null}
-  if(osc){
-    try{osc.onended=null;osc.stop()}catch(_){}
-    try{osc.disconnect()}catch(_){}
-    osc=null;
-  }
-  if(gain){try{gain.disconnect()}catch(_){}gain=null}
-  bar.style.width="0%";
-  liveDirection.textContent="Stopped";
-  if(msg)log(msg);
-}
-
-async function testBeep(){
-  stopAll();
-  try{
-    const c=await unlock(),o=c.createOscillator(),g=c.createGain();
-    o.type="sine";
-    o.frequency.setValueAtTime(1000,c.currentTime);
-    g.gain.setValueAtTime(gdb(levelDB),c.currentTime);
-    o.connect(g);g.connect(c.destination);
-    o.start();o.stop(c.currentTime+.6);
-    liveHz.textContent="01000.000 Hz";
-    liveDirection.textContent="1 kHz test";
-    log("Playing 1 kHz test beep at "+levelDB.toFixed(1)+" dBFS.");
-    o.onended=()=>{liveHz.textContent="00000.000 Hz";liveDirection.textContent="Ready";log("Test beep finished.")}
-  }catch(e){log("ERROR: "+(e.message||e))}
-}
-
-function updateSweepBehavior(){
-  if(modeEl.value==="fixed")return;
-  const initial=directionEl.value==="up"?"Low → High":"High → Low";
-  const reverse=directionEl.value==="up"?"High → Low":"Low → High";
-  if(sweepBackEl.checked && loopEl.checked)sweepBehavior.textContent=initial+", then "+reverse+", repeating back and forth continuously.";
-  else if(sweepBackEl.checked)sweepBehavior.textContent=initial+", then "+reverse+", then stop.";
-  else if(loopEl.checked)sweepBehavior.textContent=initial+", reset to the starting edge, then repeat.";
-  else sweepBehavior.textContent=initial+", then stop.";
-}
-
-function updateModeUI(){
-  const fixed=modeEl.value==="fixed";
-  el("endWrap").style.display=fixed?"none":"";
-  el("durWrap").style.display=fixed?"none":"";
-  sweepOptions.style.display=fixed?"none":"block";
-  el("startLabel").textContent=fixed?"Tone frequency (Hz)":"Low frequency (Hz)";
-  if(!fixed)updateSweepBehavior();
-}
-
-function parse(){
-  mode=modeEl.value;
-  const a=Math.round(Number(startEl.value)*1000)/1000;
-  const b=Math.round(Number(endEl.value)*1000)/1000;
-  dur=Number(durEl.value);
-  startAscending=directionEl.value==="up";
-  sweepBack=sweepBackEl.checked;
-  looping=loopEl.checked;
-
-  if(!Number.isFinite(a)||a<0)throw new Error("Invalid frequency.");
-  if(mode==="fixed"){
-    lowHz=a;highHz=a;
-  }else{
-    if(!Number.isFinite(b)||b<0)throw new Error("Invalid high frequency.");
-    if(a>=b)throw new Error("Low frequency must be lower than high frequency.");
-    lowHz=a;highHz=b;
-    if(!Number.isFinite(dur)||dur<=0)throw new Error("Time per sweep direction must be greater than 0 seconds.");
-    if(mode==="log"&&lowHz<=0)throw new Error("Log sweeps require frequencies above 0 Hz.");
-  }
-
-  const nyq=ac.sampleRate/2;
-  if(lowHz>=nyq||highHz>=nyq)throw new Error("Frequency must be below Nyquist: "+nyq.toFixed(0)+" Hz.");
-
-  startEl.value=lowHz.toFixed(3);
-  if(mode!=="fixed")endEl.value=highHz.toFixed(3);
-}
-
-function frequencyAtFraction(frac,ascending){
-  frac=clamp(frac,0,1);
-  if(mode==="linear")return ascending?lowHz+(highHz-lowHz)*frac:highHz-(highHz-lowHz)*frac;
-  const ratio=highHz/lowHz;
-  return ascending?lowHz*Math.pow(ratio,frac):highHz/Math.pow(ratio,frac);
-}
-
-function scheduleLeg(ts,ascending){
-  const from=ascending?lowHz:highHz;
-  const to=ascending?highHz:lowHz;
-  osc.frequency.setValueAtTime(from,ts);
-  if(mode==="linear")osc.frequency.linearRampToValueAtTime(to,ts+dur);
-  else osc.frequency.exponentialRampToValueAtTime(to,ts+dur);
-}
-
-function legAscending(index){
-  return sweepBack && (index%2===1)?!startAscending:startAscending;
-}
-
-function scheduleLoopWindow(){
-  if(!ac||!osc||!looping)return;
-  const horizon=ac.currentTime+Math.max(8,dur*4);
-  while(nextLegStart<horizon){
-    scheduleLeg(nextLegStart,legAscending(nextLegIndex));
-    nextLegIndex++;
-    nextLegStart=t0+nextLegIndex*dur;
-  }
-}
-
-function sweepState(now){
-  if(mode==="fixed")return{freq:lowHz,position:0,ascending:true,done:false};
-  const elapsed=Math.max(0,now-t0);
-
-  if(looping){
-    const legIndex=Math.floor(elapsed/dur);
-    const local=(elapsed-legIndex*dur)/dur;
-    const ascending=legAscending(legIndex);
-    return{freq:frequencyAtFraction(local,ascending),position:ascending?local:1-local,ascending,done:false};
-  }
-
-  const totalLegs=sweepBack?2:1;
-  const totalTime=dur*totalLegs;
-  if(elapsed>=totalTime){
-    const finalAscending=legAscending(totalLegs-1);
-    const finalFreq=finalAscending?highHz:lowHz;
-    return{freq:finalFreq,position:finalAscending?1:0,ascending:finalAscending,done:true};
-  }
-
-  const legIndex=Math.min(totalLegs-1,Math.floor(elapsed/dur));
-  const local=(elapsed-legIndex*dur)/dur;
-  const ascending=legAscending(legIndex);
-  return{freq:frequencyAtFraction(local,ascending),position:ascending?local:1-local,ascending,done:false};
-}
-
-function draw(){
-  if(!ac||!osc)return;
-  const state=sweepState(ac.currentTime);
-  liveHz.textContent=fHz(state.freq)+" Hz";
-
-  if(mode==="fixed"){
-    bar.style.width="0%";
-    liveDirection.textContent="Fixed tone";
-  }else{
-    bar.style.width=(clamp(state.position,0,1)*100)+"%";
-    liveDirection.textContent=state.ascending?"↑ Low → High":"↓ High → Low";
-    if(state.done){
-      liveHz.textContent=fHz(state.freq)+" Hz";
-      stopAll("Sweep complete.");
-      return;
-    }
-  }
-  raf=requestAnimationFrame(draw);
-}
-
-async function startSound(){
-  stopAll();
-  try{
-    await unlock();
-    parse();
-
-    osc=ac.createOscillator();
-    gain=ac.createGain();
-    osc.type="sine";
-    gain.gain.setValueAtTime(gdb(levelDB),ac.currentTime);
-    osc.connect(gain);
-    gain.connect(ac.destination);
-    t0=ac.currentTime+.03;
-
-    if(mode==="fixed"){
-      osc.frequency.setValueAtTime(lowHz,t0);
-      osc.start(t0);
-    }else{
-      osc.frequency.cancelScheduledValues(t0);
-      if(looping){
-        nextLegIndex=0;
-        nextLegStart=t0;
-        scheduleLoopWindow();
-        schedulerTimer=setInterval(scheduleLoopWindow,1000);
-        osc.start(t0);
-      }else{
-        const legs=sweepBack?2:1;
-        for(let i=0;i<legs;i++)scheduleLeg(t0+i*dur,legAscending(i));
-        osc.start(t0);
-        osc.stop(t0+legs*dur+.04);
-      }
-    }
-
-    const directionText=mode==="fixed"?"fixed tone":(startAscending?"Low → High":"High → Low");
-    log("Generator started at "+levelDB.toFixed(1)+" dBFS. Starting "+directionText+".");
-    draw();
-  }catch(e){
-    stopAll();
-    log("ERROR: "+(e.message||e));
-  }
-}
-
-modeEl.addEventListener("change",updateModeUI);
-directionEl.addEventListener("change",updateSweepBehavior);
-sweepBackEl.addEventListener("change",updateSweepBehavior);
-loopEl.addEventListener("change",updateSweepBehavior);
-el("test").addEventListener("click",testBeep);
-el("startBtn").addEventListener("click",startSound);
-el("stopBtn").addEventListener("click",()=>stopAll("Stopped."));
-
-setDB(-12);
-updateModeUI();
-log("Page initialized. Tap TEST 1 kHz BEEP first.");
+function log(s){const state=ac?ac.state:"not created";const rate=ac?ac.sampleRate:"n/a";diag.textContent=s+"\nAudioContext: "+state+"\nSample rate: "+rate+" Hz"}
+function setDB(v){v=Number(v);if(!Number.isFinite(v))v=levelDB;levelDB=clamp(Math.round(v*10)/10,-100,0);const p=(levelDB+100)/100,rot=-135+p*270;knob.style.setProperty("--rot",rot+"deg");knobArc.style.setProperty("--arc",(p*270)+"deg");knobValue.textContent=levelDB.toFixed(1);dbExact.value=levelDB.toFixed(1);liveDb.textContent=levelDB.toFixed(1)+" dBFS";knobShell.setAttribute("aria-valuenow",levelDB.toFixed(1));if(gain&&ac){gain.gain.cancelScheduledValues(ac.currentTime);gain.gain.setTargetAtTime(gdb(levelDB),ac.currentTime,.004)}}
+function pointerValue(e,shell,min,max,logarithmic){const r=shell.getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height/2,dx=e.clientX-cx,dy=e.clientY-cy;if(Math.hypot(dx,dy)<20)return null;let angle=Math.atan2(dy,dx)*180/Math.PI;if(angle<0)angle+=360;let u=angle;if(u<135)u+=360;u=clamp(u,135,405);const p=(u-135)/270;return logarithmic?min*Math.pow(max/min,p):min+(max-min)*p}
+function setManualHz(v,updateTone=true){v=Number(v);if(!Number.isFinite(v))v=manualHz;manualHz=Math.max(.001,Math.round(v*1000)/1000);const visual=clamp(manualHz,1,20000),p=Math.log(visual/1)/Math.log(20000),rot=-135+p*270;freqKnob.style.setProperty("--rot",rot+"deg");freqKnobArc.style.setProperty("--arc",(p*270)+"deg");freqKnobValue.textContent=manualHz.toFixed(3);freqExact.value=manualHz.toFixed(3);freqKnobShell.setAttribute("aria-valuenow",manualHz.toFixed(3));if(modeEl.value==="fixed"){startEl.value=manualHz.toFixed(3);if(updateTone&&osc&&ac&&mode==="fixed"){osc.frequency.cancelScheduledValues(ac.currentTime);osc.frequency.setTargetAtTime(manualHz,ac.currentTime,.004);lowHz=highHz=manualHz;liveHz.textContent=fHz(manualHz)+" Hz"}}}
+function dbDown(e){const v=pointerValue(e,knobShell,-100,0,false);if(v!==null)setDB(v)}
+knobShell.addEventListener("pointerdown",e=>{dbDragging=true;knobShell.setPointerCapture&&knobShell.setPointerCapture(e.pointerId);dbDown(e);e.preventDefault()});knobShell.addEventListener("pointermove",e=>{if(dbDragging){dbDown(e);e.preventDefault()}});knobShell.addEventListener("pointerup",e=>{dbDragging=false;try{knobShell.releasePointerCapture(e.pointerId)}catch(_){}});knobShell.addEventListener("pointercancel",()=>dbDragging=false);
+el("dbDown").addEventListener("click",()=>setDB(levelDB-.1));el("dbUp").addEventListener("click",()=>setDB(levelDB+.1));dbExact.addEventListener("change",()=>setDB(dbExact.value));
+function freqFollow(e){const v=pointerValue(e,freqKnobShell,1,20000,true);if(v!==null)setManualHz(v)}
+freqKnobShell.addEventListener("pointerdown",e=>{if(modeEl.value!=="fixed")return;freqDragging=true;freqKnobShell.setPointerCapture&&freqKnobShell.setPointerCapture(e.pointerId);freqFollow(e);e.preventDefault()});freqKnobShell.addEventListener("pointermove",e=>{if(freqDragging){freqFollow(e);e.preventDefault()}});freqKnobShell.addEventListener("pointerup",e=>{freqDragging=false;try{freqKnobShell.releasePointerCapture(e.pointerId)}catch(_){}});freqKnobShell.addEventListener("pointercancel",()=>freqDragging=false);
+freqExact.addEventListener("change",()=>setManualHz(freqExact.value));
+[["freqM1",-1],["freqM01",-.1],["freqM001",-.01],["freqM0001",-.001],["freqP0001",.001],["freqP001",.01],["freqP01",.1],["freqP1",1]].forEach(x=>el(x[0]).addEventListener("click",()=>setManualHz(manualHz+x[1])));
+function makeContext(){if(ac)return ac;const C=window.AudioContext||window.webkitAudioContext;if(!C)throw new Error("This browser does not expose Web Audio.");try{ac=new C({latencyHint:"interactive"})}catch(_){ac=new C()}ac.onstatechange=()=>log("Audio state changed.");return ac}
+async function unlock(){const c=makeContext();if(c.state!=="running"){try{await c.resume()}catch(_){}}try{const b=c.createBuffer(1,1,c.sampleRate),s=c.createBufferSource();s.buffer=b;s.connect(c.destination);s.start(0)}catch(_){}if(c.state!=="running"){try{await c.resume()}catch(_){}}return c}
+function stopAll(msg){if(raf)cancelAnimationFrame(raf);raf=0;if(schedulerTimer){clearInterval(schedulerTimer);schedulerTimer=null}if(osc){try{osc.onended=null;osc.stop()}catch(_){}try{osc.disconnect()}catch(_){}osc=null}if(gain){try{gain.disconnect()}catch(_){}gain=null}bar.style.width="0%";liveDirection.textContent="Stopped";if(msg)log(msg)}
+async function testBeep(){stopAll();try{const c=await unlock(),o=c.createOscillator(),g=c.createGain();o.type="sine";o.frequency.value=1000;g.gain.value=gdb(levelDB);o.connect(g);g.connect(c.destination);o.start();o.stop(c.currentTime+.6);liveHz.textContent="01000.000 Hz";liveDirection.textContent="1 kHz test";log("Playing 1 kHz test beep.");o.onended=()=>{liveHz.textContent="00000.000 Hz";liveDirection.textContent="Ready"}}catch(e){log("ERROR: "+(e.message||e))}}
+function updateSweepBehavior(){if(modeEl.value==="fixed")return;const initial=directionEl.value==="up"?"Low → High":"High → Low",reverse=directionEl.value==="up"?"High → Low":"Low → High",prefix=modeEl.value==="stepped"?"Stepped: ":"";if(sweepBackEl.checked&&loopEl.checked)sweepBehavior.textContent=prefix+initial+", then "+reverse+", repeating back and forth continuously.";else if(sweepBackEl.checked)sweepBehavior.textContent=prefix+initial+", then "+reverse+", then stop.";else if(loopEl.checked)sweepBehavior.textContent=prefix+initial+", reset to the starting edge, then repeat.";else sweepBehavior.textContent=prefix+initial+", then stop."}
+function updateModeUI(){const fixed=modeEl.value==="fixed",stepped=modeEl.value==="stepped";el("endWrap").style.display=fixed?"none":"";el("durWrap").style.display=(!fixed&&!stepped)?"block":"none";stepOptions.style.display=stepped?"block":"none";sweepOptions.style.display=fixed?"none":"block";el("startLabel").textContent=fixed?"Tone frequency (Hz)":"Low frequency (Hz)";freqKnobShell.classList.toggle("disabled",!fixed);manualHint.style.display=fixed?"none":"block";["freqM1","freqM01","freqM001","freqM0001","freqP0001","freqP001","freqP01","freqP1"].forEach(id=>el(id).disabled=!fixed);freqExact.disabled=!fixed;if(fixed){const v=Number(startEl.value);if(Number.isFinite(v)&&v>0)setManualHz(v,false)}else updateSweepBehavior()}
+function parse(){mode=modeEl.value;const a=Math.round(Number(startEl.value)*1000)/1000,b=Math.round(Number(endEl.value)*1000)/1000;startAscending=directionEl.value==="up";sweepBack=sweepBackEl.checked;looping=loopEl.checked;if(!Number.isFinite(a)||a<0)throw new Error("Invalid frequency.");if(mode==="fixed"){manualHz=Math.max(.001,a);lowHz=highHz=manualHz;setManualHz(manualHz,false)}else{if(!Number.isFinite(b)||b<0||a>=b)throw new Error("Low frequency must be lower than high frequency.");lowHz=a;highHz=b;if(mode==="stepped"){stepHz=Math.round(Number(stepSizeEl.value)*1000)/1000;stepDwell=Number(stepDwellEl.value);if(!Number.isFinite(stepHz)||stepHz<.001)throw new Error("Step size must be at least 0.001 Hz.");if(!Number.isFinite(stepDwell)||stepDwell<.001)throw new Error("Dwell time must be at least 0.001 seconds.");stepCount=Math.ceil((highHz-lowHz)/stepHz);if(stepCount>100000)throw new Error("This step size creates more than 100,000 steps per direction. Increase the step size.")}else{dur=Number(durEl.value);if(!Number.isFinite(dur)||dur<=0)throw new Error("Time per sweep direction must be greater than 0 seconds.");if(mode==="log"&&lowHz<=0)throw new Error("Log sweeps require frequencies above 0 Hz.")}}const nyq=ac.sampleRate/2;if(lowHz>=nyq||highHz>=nyq)throw new Error("Frequency must be below Nyquist: "+nyq.toFixed(0)+" Hz.");startEl.value=lowHz.toFixed(3);if(mode!=="fixed")endEl.value=highHz.toFixed(3)}
+function frequencyAtFraction(frac,ascending){frac=clamp(frac,0,1);if(mode==="linear")return ascending?lowHz+(highHz-lowHz)*frac:highHz-(highHz-lowHz)*frac;const ratio=highHz/lowHz;return ascending?lowHz*Math.pow(ratio,frac):highHz/Math.pow(ratio,frac)}
+function legAscending(index){return sweepBack&&(index%2===1)?!startAscending:startAscending}
+function scheduleLeg(ts,ascending){const from=ascending?lowHz:highHz,to=ascending?highHz:lowHz;osc.frequency.setValueAtTime(from,ts);if(mode==="linear")osc.frequency.linearRampToValueAtTime(to,ts+dur);else osc.frequency.exponentialRampToValueAtTime(to,ts+dur)}
+function scheduleLoopWindow(){if(!ac||!osc||!looping||mode==="stepped")return;const horizon=ac.currentTime+Math.max(8,dur*4);while(nextLegStart<horizon){scheduleLeg(nextLegStart,legAscending(nextLegIndex));nextLegIndex++;nextLegStart=t0+nextLegIndex*dur}}
+function steppedFreq(ascending,j){j=clamp(j,0,stepCount);return ascending?Math.min(highHz,lowHz+j*stepHz):Math.max(lowHz,highHz-j*stepHz)}
+function steppedSlotInfo(slot){if(!sweepBack){const slots=stepCount+1,local=looping?slot%slots:Math.min(slot,slots-1);return{freq:steppedFreq(startAscending,local),ascending:startAscending,index:local,total:slots}}if(looping){const cycle=stepCount===0?1:2*stepCount,pos=slot%cycle;if(pos<=stepCount)return{freq:steppedFreq(startAscending,pos),ascending:startAscending,index:pos,total:cycle};const j=pos-stepCount;return{freq:steppedFreq(!startAscending,j),ascending:!startAscending,index:pos,total:cycle}}const total=2*stepCount+1,local=Math.min(slot,total-1);if(local<=stepCount)return{freq:steppedFreq(startAscending,local),ascending:startAscending,index:local,total};const j=local-stepCount;return{freq:steppedFreq(!startAscending,j),ascending:!startAscending,index:local,total}}
+function steppedTotalSlots(){return sweepBack?2*stepCount+1:stepCount+1}
+function scheduleSteppedWindow(){if(!ac||!osc||mode!=="stepped")return;const horizon=ac.currentTime+8,maxSlots=looping?Infinity:steppedTotalSlots();while(nextStepTime<horizon&&nextStepSlot<maxSlots){const info=steppedSlotInfo(nextStepSlot);osc.frequency.setValueAtTime(info.freq,nextStepTime);nextStepSlot++;nextStepTime=t0+nextStepSlot*stepDwell}}
+function sweepState(now){const elapsed=Math.max(0,now-t0);if(mode==="fixed")return{freq:lowHz,position:0,ascending:true,done:false,label:"Fixed tone"};if(mode==="stepped"){const slot=Math.floor(elapsed/stepDwell),total=steppedTotalSlots();if(!looping&&slot>=total){const last=steppedSlotInfo(total-1);return{freq:last.freq,position:startAscending?1:0,ascending:last.ascending,done:true,label:"Stepped sweep complete"}}const info=steppedSlotInfo(slot),position=(info.freq-lowHz)/(highHz-lowHz);return{freq:info.freq,position,ascending:info.ascending,done:false,label:(info.ascending?"↑":"↓")+" Stepped • "+(looping?"step "+((info.index||0)+1):"step "+(Math.min(slot,total-1)+1)+" / "+total)}}if(looping){const legIndex=Math.floor(elapsed/dur),local=(elapsed-legIndex*dur)/dur,ascending=legAscending(legIndex);return{freq:frequencyAtFraction(local,ascending),position:ascending?local:1-local,ascending,done:false,label:ascending?"↑ Low → High":"↓ High → Low"}}const totalLegs=sweepBack?2:1,totalTime=dur*totalLegs;if(elapsed>=totalTime){const finalAscending=legAscending(totalLegs-1),finalFreq=finalAscending?highHz:lowHz;return{freq:finalFreq,position:finalAscending?1:0,ascending:finalAscending,done:true,label:"Sweep complete"}}const legIndex=Math.min(totalLegs-1,Math.floor(elapsed/dur)),local=(elapsed-legIndex*dur)/dur,ascending=legAscending(legIndex);return{freq:frequencyAtFraction(local,ascending),position:ascending?local:1-local,ascending,done:false,label:ascending?"↑ Low → High":"↓ High → Low"}}
+function draw(){if(!ac||!osc)return;const s=sweepState(ac.currentTime);liveHz.textContent=fHz(s.freq)+" Hz";bar.style.width=(clamp(s.position,0,1)*100)+"%";liveDirection.textContent=s.label;if(s.done){stopAll(s.label+".");return}raf=requestAnimationFrame(draw)}
+async function startSound(){stopAll();try{await unlock();parse();osc=ac.createOscillator();gain=ac.createGain();osc.type="sine";gain.gain.value=gdb(levelDB);osc.connect(gain);gain.connect(ac.destination);t0=ac.currentTime+.03;if(mode==="fixed"){osc.frequency.setValueAtTime(lowHz,t0);osc.start(t0)}else if(mode==="stepped"){nextStepSlot=0;nextStepTime=t0;scheduleSteppedWindow();schedulerTimer=setInterval(scheduleSteppedWindow,750);osc.start(t0);if(!looping)osc.stop(t0+steppedTotalSlots()*stepDwell+.04)}else if(looping){nextLegIndex=0;nextLegStart=t0;scheduleLoopWindow();schedulerTimer=setInterval(scheduleLoopWindow,1000);osc.start(t0)}else{const legs=sweepBack?2:1;for(let i=0;i<legs;i++)scheduleLeg(t0+i*dur,legAscending(i));osc.start(t0);osc.stop(t0+legs*dur+.04)}log("Generator started at "+levelDB.toFixed(1)+" dBFS.");draw()}catch(e){stopAll();log("ERROR: "+(e.message||e))}}
+modeEl.addEventListener("change",updateModeUI);directionEl.addEventListener("change",updateSweepBehavior);sweepBackEl.addEventListener("change",updateSweepBehavior);loopEl.addEventListener("change",updateSweepBehavior);startEl.addEventListener("change",()=>{if(modeEl.value==="fixed")setManualHz(startEl.value,false)});el("test").addEventListener("click",testBeep);el("startBtn").addEventListener("click",startSound);el("stopBtn").addEventListener("click",()=>stopAll("Stopped."));setDB(-12);setManualHz(30,false);updateModeUI();log("Page initialized. Tap TEST 1 kHz BEEP first.");
 })();
 </script>
 </body>
